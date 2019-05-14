@@ -70,8 +70,8 @@
 * game.js:游戏入口文件
 * game.json:游戏配置文件
 * main.js:游戏主函数，包括整个打飞机的游戏场景、参与者（玩家飞机和敌方飞机）、游戏逻辑
-### 构思
-#### 游戏主逻辑tu
+### 构思与设计
+#### 游戏主逻辑
 ![图片](1.png)
 在loop中，玩家每隔20帧射击一次，每隔60帧生成新的敌机。每帧检查玩家和敌机是否死亡，玩家死亡游戏结束，敌机死亡分数+1.只有玩家可以射击，且射击方式固定，通过躲避敌机生存。
 ### 分析
@@ -130,11 +130,26 @@ reset() {
 *  removeEnemey(enemy) 回收敌机到对象池
 *  removeBullets(bullet) 回收子弹到对象池
 ### 玩家升级
-1.玩家初始等级为1，玩家可通过击杀敌机升级，每击落30敌机升级一次	
-2.玩家每升级一次，增加一个射击口	
-3.玩家最多升级两次
+1.玩家初始等级为1，玩家可通过击杀敌机升级，每击落30敌机升级一次，		
+2.玩家每升级一次，增加一个射击口，		
+3.玩家最多升级两次。	
 #### 步骤
-##### 打开player/index.js，将等级逻辑加入到玩家的类中		
+#### 在databus.js，将等级逻辑加入到玩家的类中
+
+```
+其他代码...
+	reset() {
+		this.frame      = 0
+		this.score = 0  //分数
+		this.palyerLevel = 1  //等级
+		this.bullets    = [] //子弹
+		this.enemys     = [] //敌机
+		this.animations = []
+		this.gameOver   = false
+	  }
+  其他代码...
+```
+##### 打开player/index.js，实现等级增加		
 
 ```
 export default class Player extends Sprite {
@@ -153,14 +168,13 @@ export default class Player extends Sprite {
     // 初始化事件监听
     this.initEvent()
 
-    this.playerLevel = 1;
   }
 
-  get level () {
-    return this.playerLevel;
+ get level() {//获取main.js中的this.player.level
+    return databus.palyerLevel;
   }
-  set level (level) {
-    this.playerLevel = Math.min(level, 3);
+  set level(level){
+    databus.palyerLevel = Math.min(level,3);
   }
 ```
 ##### 接下来在main.js的update函数加入升级逻辑。
@@ -213,5 +227,5 @@ export default class Player extends Sprite {
 // ...其他代码
 ```
 
-#### 效果展示
+#### 效果展示图
 ![图片](addLevel.gif)
