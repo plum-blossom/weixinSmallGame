@@ -28,9 +28,7 @@ export default class Player extends Sprite {
     // 初始化事件监听
     this.initEvent()
 
-    // // 玩家等级初始为1
-    // this.palyerLevel = 1
-    // console.log(databus.palyerLevel)
+    
   }
   /**
     * 等级逻辑
