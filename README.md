@@ -128,4 +128,90 @@ reset() {
   }
 ```
 *  removeEnemey(enemy) 回收敌机到对象池
-*   removeBullets(bullet) 回收子弹到对象池
+*  removeBullets(bullet) 回收子弹到对象池
+### 玩家升级
+1.玩家初始等级为1，玩家可通过击杀敌机升级，每击落30敌机升级一次	
+2.玩家每升级一次，增加一个射击口	
+3.玩家最多升级两次
+#### 步骤
+##### 打开player/index.js，将等级逻辑加入到玩家的类中		
+
+```
+export default class Player extends Sprite {
+  constructor() {
+    super(PLAYER_IMG_SRC, PLAYER_WIDTH, PLAYER_HEIGHT)
+
+    // 玩家默认处于屏幕底部居中位置
+    this.x = screenWidth / 2 - this.width / 2
+    this.y = screenHeight - this.height - 30
+
+    // 用于在手指移动的时候标识手指是否已经在飞机上了
+    this.touched = false
+
+    this.bullets = []
+
+    // 初始化事件监听
+    this.initEvent()
+
+    this.playerLevel = 1;
+  }
+
+  get level () {
+    return this.playerLevel;
+  }
+  set level (level) {
+    this.playerLevel = Math.min(level, 3);
+  }
+```
+##### 接下来在main.js的update函数加入升级逻辑。
+
+```
+// 其他代码...
+
+    update() {
+        this.bg.update();
+
+        databus.bullets.concat(databus.enemys).forEach(item => {
+            item.update();
+        });
+
+        this.enemyGenerate();
+
+        this.player.level = Math.max(1, Math.ceil(databus.score / 30));
+
+        this.collisionDetection();
+    }
+
+// 其他代码...
+```
+##### 设置奖励，增加射击口
+
+```
+// ...其他代码
+
+    /**
+     * 玩家射击操作
+     * 射击时机由外部决定
+     */
+    shoot() {
+
+
+      for(let i = 0; i < this.level; i++) {
+        const bullet = databus.pool.getItemByClass('bullet', Bullet);
+        const middle = this.x + this.width / 2 - bullet.width / 2;
+        const x = !i ? middle : (i % 2 === 0 ? middle + 30 : middle - 30);
+        bullet.init(
+          x,
+          this.y - 10,
+          10
+        )
+
+        databus.bullets.push(bullet)
+      }
+    }
+
+// ...其他代码
+```
+
+#### 效果展示
+![图片](addLevel.gif)
