@@ -19,7 +19,8 @@ export default class DataBus {
 
   reset() {
     this.frame      = 0
-    this.score      = 0  //分数
+    this.score = 0  //分数
+    this.palyerLevel = 1  //等级
     this.bullets    = [] //子弹
     this.enemys     = [] //敌机
     this.animations = []

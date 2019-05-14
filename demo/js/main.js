@@ -149,6 +149,8 @@ export default class Main {
     })
     // 调用gameinfo.js显示左上角的分数
     this.gameinfo.renderGameScore(ctx, databus.score)
+    // 调用gameinfo.js显示等级
+    this.gameinfo.renderPlayerLevel(ctx, databus.palyerLevel)
 
     // 游戏结束停止帧循环
     if ( databus.gameOver ) {

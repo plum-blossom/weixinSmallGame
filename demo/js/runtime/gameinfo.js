@@ -12,8 +12,19 @@ export default class GameInfo {
     ctx.font      = "20px Arial"
     // 填充文本设置
     ctx.fillText(
-      score,//文本-分数
+      "分数:"+score,//文本-分数
       10, //x轴位置
+      30 //y轴位置
+    )
+  }
+  // 玩家等级
+  renderPlayerLevel(ctx,level){
+    ctx.fillStyle = "#ffffff"
+    ctx.font = "20px Arial"
+    // 填充文本设置
+    ctx.fillText(
+      "等级:"+level,//文本-分数
+      100, //x轴位置
       30 //y轴位置
     )
   }

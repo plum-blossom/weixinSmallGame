@@ -28,8 +28,9 @@ export default class Player extends Sprite {
     // 初始化事件监听
     this.initEvent()
 
-    // 玩家等级初始为1
-    this.palyerLevel = 1
+    // // 玩家等级初始为1
+    // this.palyerLevel = 1
+    // console.log(databus.palyerLevel)
   }
   /**
     * 等级逻辑
@@ -37,12 +38,13 @@ export default class Player extends Sprite {
     * 玩家每升级一次，增加一个射击口
     * 玩家最多升级两次
     */
-  get level(){
-    return this.palyerLevel;
+  get level() {//获取main.js中的this.player.level
+    return databus.palyerLevel;
   }
   set level(level){
-    this.palyerLevel = Math.min(level,3);
+    databus.palyerLevel = Math.min(level,3);
   }
+  
   
   /**
    * 当手指触摸屏幕的时候
