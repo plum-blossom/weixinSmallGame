@@ -17,7 +17,7 @@ export default class GameInfo {
       30 //y轴位置
     )
   }
-  // 玩家等级
+  // 玩家等级文本显示
   renderPlayerLevel(ctx,level){
     ctx.fillStyle = "#ffffff"
     ctx.font = "20px Arial"

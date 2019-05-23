@@ -24,7 +24,7 @@ export default class Bullet extends Sprite {
   //   this.direction = direction;
   //   this.owner = owner;
   // }
-
+  // 初始化位置和速度
   init(x, y, speed) {
     this.x = x
     this.y = y

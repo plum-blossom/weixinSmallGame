@@ -22,16 +22,16 @@ export default class Music {
 
     this.playBgm()
   }
-  // 播放音乐
+  // 播放背景音乐函数
   playBgm() {
     // this.bgmAudio.play()
   }
-
+  // 播放射击音乐函数
   playShoot() {
     this.shootAudio.currentTime = 0
     // this.shootAudio.play()
   }
-
+  // 播放玩家爆炸音乐函数
   playExplosion() {
     this.boomAudio.currentTime = 0
     // this.boomAudio.play()

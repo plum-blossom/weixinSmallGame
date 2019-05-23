@@ -18,7 +18,7 @@ function rnd(start, end){
 export default class Enemy extends Animation {
   constructor() {
     super(ENEMY_IMG_SRC, ENEMY_WIDTH, ENEMY_HEIGHT)
-    // 初始化预定义爆炸的帧动画
+    // 调用初始化预定义爆炸的帧动画
     this.initExplosionAnimation()
   }
 
@@ -31,7 +31,7 @@ export default class Enemy extends Animation {
     this.visible = true
   }
 
-  // 预定义爆炸的帧动画
+  // 预定义爆炸的帧动画函数
   initExplosionAnimation() {
     // 爆炸图片数组
     let frames = []

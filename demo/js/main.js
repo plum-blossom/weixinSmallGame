@@ -69,7 +69,7 @@ export default class Main {
         if ( !enemy.isPlaying && enemy.isCollideWith(bullet) ) {
           // playAnimation()是播放敌机爆炸的动画，playExplosion()是播放敌机爆炸的声音
           enemy.playAnimation()
-          that.music.playExplosion()
+          that.music.playExplosion() //播放玩家爆炸音乐函数
 
           // 子弹和敌机消失
           bullet.visible = false
@@ -189,7 +189,7 @@ export default class Main {
 
     if ( databus.frame % 20 === 0 ) {
       this.player.shoot()
-      this.music.playShoot()
+      this.music.playShoot() //播放射击音乐函数
     }
   }
 
